@@ -14,7 +14,13 @@ class User (
     val id: Long? = null
 
     @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
-    val userLoanHistories: MutableList<UserLoanHistory> = ArrayList()
+    val userLoanHistories: MutableList<UserLoanHistory> = mutableListOf()
+
+    init {
+        if (name.isBlank()) {
+            throw IllegalArgumentException("이름은 비어 있을 수 없습니다")
+        }
+    }
 
     fun updateName(name: String) {
         this.name = name
@@ -27,5 +33,4 @@ class User (
     fun returnBook(bookName: String) {
         userLoanHistories.first { history -> history.bookName == bookName }.doReturn()
     }
-
 }
