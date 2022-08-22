@@ -1,14 +1,12 @@
 package com.group.libraryapp.domain.book
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 class Book constructor (
     val name: String,
 
+    @Enumerated(EnumType.STRING)
     val type: BookType,
 
     @Id
@@ -20,6 +18,8 @@ class Book constructor (
             throw IllegalArgumentException("이름은 비어 있을 수 없습니다.")
         }
     }
+
+    fun getEventScore(): Int = this.type.score
 
     companion object {
         fun fixture(
