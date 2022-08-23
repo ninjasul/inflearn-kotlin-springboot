@@ -11,6 +11,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -20,8 +21,11 @@ class UserServiceTest @Autowired constructor (
     private val userLoanHistoryRepository: UserLoanHistoryRepository,
     private val userService: UserService,
 ) {
+    private val log = LoggerFactory.getLogger(this.javaClass)
+
     @AfterEach
     fun clean() {
+        log.info("clean UserServiceTest")
         userRepository.deleteAll()
     }
 
