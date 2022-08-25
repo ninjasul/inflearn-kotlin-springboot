@@ -157,7 +157,7 @@ class BookServiceTest @Autowired constructor(
         assertCount(result, BookType.SCIENCE, 1)
     }
 
-    private fun assertCount(result: List<BookStatResponse>, type: BookType, expectedCount: Int) {
+    private fun assertCount(result: List<BookStatResponse>, type: BookType, expectedCount: Long) {
         assertThat(result.first { it.type == type }.count).isEqualTo(expectedCount)
     }
 }
