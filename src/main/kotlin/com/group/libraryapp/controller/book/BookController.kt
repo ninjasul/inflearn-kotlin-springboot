@@ -5,6 +5,7 @@ import com.group.libraryapp.dto.book.request.BookRequest
 import com.group.libraryapp.dto.book.request.BookReturnRequest
 import com.group.libraryapp.service.book.BookService
 import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -17,6 +18,11 @@ class BookController (
     @PostMapping("/book")
     fun saveBook(@RequestBody request: BookRequest) {
         bookService.saveBook(request)
+    }
+
+    @GetMapping("/book/loan")
+    fun countLoanedBook(): Int {
+        return bookService.countLoanedBook()
     }
 
     @PostMapping("/book/loan")
