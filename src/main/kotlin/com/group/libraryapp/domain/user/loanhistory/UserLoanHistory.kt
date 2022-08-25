@@ -10,6 +10,9 @@ class UserLoanHistory constructor (
     val bookName: String,
     var status: UserLoanStatus = UserLoanStatus.LOANED,
 ) {
+    val isReturn: Boolean
+        get() = this.status == UserLoanStatus.RETURNED
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null
